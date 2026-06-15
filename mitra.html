@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitra Barberman.id | Gabung Bersama Kami</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bm: {
+                            black: '#0a0a0a',
+                            dark: '#171717',
+                            white: '#f5f5f5',
+                            red: '#dc2626', // Tailwind red-600
+                            redDark: '#991b1b', // Tailwind red-800
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
+
+        /* Dynamic Island Base Styles */
+        #dynamic-island {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Utility classes for Anime.js targets */
+        .reveal-text .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .hide-initially {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        /* Subtle grid background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+    </style>
+</head>
+<body id="top" class="antialiased selection:bg-bm-red selection:text-white">
+
+    <!-- Dynamic Island (Fixed Top Center) -->
+    <div class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-center w-full max-w-[200px]" id="island-container">
+        <div id="dynamic-island" class="bg-black border border-gray-800 rounded-full flex items-center justify-between px-2 py-1.5 h-10 w-24 overflow-hidden group cursor-pointer relative">
+            
+            <!-- Default State (Camera/Sensor look) -->
+            <div id="island-default" class="absolute inset-0 flex items-center justify-center space-x-2 pointer-events-none transition-opacity duration-300">
+                <div class="w-3 h-3 bg-gray-900 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]"></div>
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full opacity-50 shadow-[0_0_5px_rgba(34,197,94,0.5)]"></div>
+            </div>
+
+            <!-- Expanded State (Actions) -->
+            <div id="island-actions" class="absolute inset-0 flex items-center justify-between px-4 opacity-0 scale-95 transition-all duration-300 w-full">
+                <!-- Back Link (Mengarahkan ke halaman utama Barberman.id) -->
+                <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200 transform hover:scale-110 focus:outline-none flex flex-col items-center group/btn" title="Kembali ke Utama">
+                    <i class="fa-solid fa-arrow-left text-sm"></i>
+                </a>
+                
+                <!-- Divider -->
+                <div class="h-4 w-px bg-gray-700"></div>
+
+                <!-- Home Link (Scroll halus ke bagian atas halaman ini) -->
+                <a href="#top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="text-gray-400 hover:text-white transition-colors duration-200 transform hover:scale-110 focus:outline-none flex flex-col items-center group/btn" title="Kembali ke Atas">
+                    <i class="fa-solid fa-house text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 bg-grid z-0 pointer-events-none opacity-50"></div>
+    <div class="fixed top-0 left-0 w-full h-1/2 bg-gradient-to-b from-bm-red/10 to-transparent z-0 pointer-events-none"></div>
+
+    <!-- Main Content Wrapper -->
+    <main class="relative z-10">
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center px-4 pt-20 pb-10 text-center relative overflow-hidden">
+            
+            <!-- Animated SVG Logo Element -->
+            <div class="mb-8 relative w-32 h-32 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full absolute inset-0">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#dc2626" stroke-width="2" id="logo-circle" stroke-dasharray="283" stroke-dashoffset="283" class="opacity-0"/>
+                    <path d="M 30 50 L 50 30 L 70 50 L 50 70 Z" fill="none" stroke="#f5f5f5" stroke-width="3" id="logo-path" stroke-dasharray="114" stroke-dashoffset="114" class="opacity-0"/>
+                </svg>
+                <i class="fa-solid fa-scissors text-4xl text-white transform -rotate-45 logo-icon opacity-0"></i>
+            </div>
+
+            <div class="inline-block px-4 py-1.5 rounded-full border border-bm-red/30 bg-bm-red/10 text-bm-red text-sm font-semibold tracking-wider uppercase mb-6 hero-element opacity-0 translate-y-4">
+                Program Kemitraan 2026
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight mb-6 w-full max-w-5xl mx-auto">
+                <span class="block text-white">ELEVATE YOUR</span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-bm-red to-bm-redDark animate-gradient">BARBERSHOP.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 hero-element opacity-0 translate-y-4 font-light">
+                Dapatkan suplai kapster profesional, pelatihan standar industri, dan tingkatkan omzet bisnis barbershop Anda bersama <span class="font-bold text-white">Barberman.id</span>.
+            </p>
+
+            <button onclick="scrollToDaftar()" class="hero-element opacity-0 group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-bm-red rounded-full overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95 focus:outline-none shadow-[0_0_20px_rgba(220,38,38,0.4)]">
+                <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+                <span class="relative flex items-center gap-2">
+                    Jelajahi Benefit <i class="fa-solid fa-arrow-down animate-bounce"></i>
+                </span>
+            </button>
+        </section>
+
+        <!-- Why Partner Section (Scroll Target) -->
+        <section id="why-us" class="py-24 px-4 relative border-t border-gray-800 bg-bm-dark">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-sm text-bm-red font-bold uppercase tracking-widest mb-2">Mengapa Kami?</h2>
+                    <h3 class="text-3xl md:text-5xl font-black text-white">Bukan Sekadar Penyalur.</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="scroll-reveal bg-black p-8 rounded-3xl border border-gray-800 hover:border-bm-red transition-colors duration-500 group">
+                        <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-bm-red transition-colors duration-500">
+                            <i class="fa-solid fa-user-check text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">SDM Tersertifikasi</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Setiap barberman yang kami salurkan telah melalui kurasi ketat dan pelatihan standar Barberman.id. Siap kerja, bukan coba-coba.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="scroll-reveal bg-black p-8 rounded-3xl border border-gray-800 hover:border-bm-red transition-colors duration-500 group" style="transition-delay: 100ms;">
+                        <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-bm-red transition-colors duration-500">
+                            <i class="fa-solid fa-chart-line text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Fokus Pada Omzet</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Kami membekali kapster tidak hanya skill potong, tapi juga upselling produk dan layanan excellence untuk retensi pelanggan Anda.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="scroll-reveal bg-black p-8 rounded-3xl border border-gray-800 hover:border-bm-red transition-colors duration-500 group" style="transition-delay: 200ms;">
+                        <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-bm-red transition-colors duration-500">
+                            <i class="fa-solid fa-handshake text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Garansi Penggantian</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Ketidakcocokan adalah risiko bisnis. Kami memberikan garansi penggantian SDM jika kinerja tidak sesuai kesepakatan awal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax/Stat Section -->
+        <section class="py-20 px-4 relative bg-bm-red overflow-hidden flex items-center justify-center">
+            <!-- Animated Background Pattern -->
+            <div class="absolute inset-0 opacity-10">
+                <svg width="100%" height="100%">
+                    <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="2" fill="#fff"></circle>
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+                </svg>
+            </div>
+
+            <div class="max-w-5xl mx-auto w-full relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="text-left md:w-1/2 scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-4">Revolusi Industri<br>Barbershop.</h2>
+                    <p class="text-white/80 text-lg">Bergabunglah dengan puluhan mitra yang telah mempercayakan manajemen SDM mereka kepada kami.</p>
+                </div>
+                
+                <div class="md:w-1/2 grid grid-cols-2 gap-6 w-full">
+                    <div class="bg-black/20 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center scroll-reveal counter-box">
+                        <div class="text-4xl font-black text-white mb-1 counter" data-target="50">0</div>
+                        <div class="text-white/70 text-sm font-semibold uppercase tracking-wider">+ Mitra Aktif</div>
+                    </div>
+                    <div class="bg-black/20 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center scroll-reveal counter-box" style="transition-delay: 100ms;">
+                        <div class="text-4xl font-black text-white mb-1 counter" data-target="200">0</div>
+                        <div class="text-white/70 text-sm font-semibold uppercase tracking-wider">+ Kapster Disalurkan</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="daftar" class="py-32 px-4 relative bg-bm-black">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-10 scroll-reveal">
+                    <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-6 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]"></i>
+                    <h2 class="text-4xl md:text-6xl font-black text-white mb-6">Siap Naik Level?</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Hubungi tim kami sekarang via WhatsApp. Diskusikan kebutuhan barbershop Anda, dan biarkan kami siapkan solusinya.
+                    </p>
+                </div>
+
+                <div class="scroll-reveal relative inline-block group">
+                    <!-- Glow effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    
+                    <button onclick="openWhatsApp()" class="relative flex items-center gap-3 px-10 py-5 bg-white text-black font-black text-lg rounded-full hover:bg-gray-100 transition-all duration-300 transform group-hover:scale-105 active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-2xl text-green-500"></i>
+                        DAFTAR JADI MITRA
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
+                </div>
+                
+                <p class="mt-8 text-sm text-gray-600 scroll-reveal">Layanan admin 24/7. Tanpa biaya pendaftaran.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 border-t border-gray-900 text-center bg-black">
+            <p class="text-gray-600 text-sm font-semibold tracking-widest uppercase">
+                &copy; 2026 Barberman.id. All rights reserved.
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- 1. Dynamic Island Logic ---
+        const islandContainer = document.getElementById('island-container');
+        const dynamicIsland = document.getElementById('dynamic-island');
+        const islandDefault = document.getElementById('island-default');
+        const islandActions = document.getElementById('island-actions');
+        
+        let isIslandExpanded = false;
+
+        function toggleIsland() {
+            isIslandExpanded = !isIslandExpanded;
+            
+            if (isIslandExpanded) {
+                // Expand
+                anime({
+                    targets: dynamicIsland,
+                    width: '180px', // Wider
+                    height: '48px', // Slightly taller
+                    borderRadius: '24px',
+                    duration: 400,
+                    easing: 'easeOutElastic(1, .8)'
+                });
+                
+                // Hide default, show actions
+                islandDefault.style.opacity = '0';
+                
+                anime({
+                    targets: islandActions,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 300,
+                    delay: 100,
+                    easing: 'easeOutQuad'
+                });
+            } else {
+                // Collapse
+                anime({
+                    targets: dynamicIsland,
+                    width: '96px', // Original width (w-24 = 6rem = 96px)
+                    height: '40px', // Original height (h-10 = 2.5rem = 40px)
+                    borderRadius: '9999px',
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+
+                // Hide actions, show default
+                anime({
+                    targets: islandActions,
+                    opacity: 0,
+                    scale: 0.95,
+                    duration: 200,
+                    easing: 'easeInQuad'
+                });
+                
+                setTimeout(() => {
+                    if(!isIslandExpanded) islandDefault.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        // Add events to Island
+        dynamicIsland.addEventListener('mouseenter', () => {
+            if(!isIslandExpanded) toggleIsland();
+        });
+        
+        islandContainer.addEventListener('mouseleave', () => {
+            if(isIslandExpanded) toggleIsland();
+        });
+
+
+        // --- 2. Initial Hero Animations ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Setup Hero Text Split for animation
+            const heroText = document.querySelector('h1 span.bg-clip-text');
+            heroText.innerHTML = heroText.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+            heroText.classList.add('reveal-text');
+
+            // Timeline for hero elements
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+            });
+
+            tl.add({
+                targets: '#logo-circle',
+                opacity: [0, 1],
+                strokeDashoffset: [283, 0],
+                duration: 1500,
+                delay: 200
+            })
+            .add({
+                targets: '#logo-path',
+                opacity: [0, 1],
+                strokeDashoffset: [114, 0],
+                duration: 1000,
+            }, '-=1000')
+            .add({
+                targets: '.logo-icon',
+                opacity: [0, 1],
+                scale: [0.5, 1],
+                rotate: [-90, -45],
+                duration: 800,
+                easing: 'easeOutBack'
+            }, '-=800')
+            .add({
+                targets: '.hero-element',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800,
+                delay: anime.stagger(150)
+            }, '-=400')
+            .add({
+                targets: '.reveal-text .letter',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                translateZ: 0,
+                duration: 800,
+                delay: anime.stagger(30)
+            }, '-=1000');
+        });
+
+        // --- 3. Scroll Animations & Intersection Observer ---
+        
+        // Counter animation function
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // easing out
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                obj.innerHTML = Math.floor(easeProgress * (end - start) + start) + (end > 100 ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // General Scroll Reveal
+                    if(entry.target.classList.contains('scroll-reveal')) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [50, 0],
+                            duration: 1000,
+                            easing: 'easeOutQuart',
+                            begin: function() {
+                                entry.target.style.visibility = 'visible';
+                            }
+                        });
+                        entry.target.classList.remove('scroll-reveal'); // Animate once
+                        observer.unobserve(entry.target);
+                    }
+                    
+                    // Specific logic for counters
+                    if(entry.target.classList.contains('counter-box')) {
+                        const counterEl = entry.target.querySelector('.counter');
+                        const targetVal = parseInt(counterEl.getAttribute('data-target'));
+                        animateValue(counterEl, 0, targetVal, 2000);
+                        entry.target.classList.remove('counter-box');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Hide elements initially and observe them
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            el.style.opacity = '0';
+            el.style.visibility = 'hidden';
+            observer.observe(el);
+        });
+
+        // --- 4. Navigation & Actions ---
+        function scrollToDaftar() {
+            document.getElementById('why-us').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openWhatsApp() {
+            const phoneNumber = "6281234567890"; // Ganti dengan nomor asli
+            const message = encodeURIComponent("Halo Admin Barberman.id, saya tertarik untuk mendaftar sebagai Mitra. Mohon informasi lebih lanjut.");
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // --- Custom Tailwind Animations in CSS (Shimmer) ---
+        tailwind.config.theme.extend.keyframes = {
+            shimmer: {
+                '100%': { transform: 'translateX(100%)' }
+            }
+        };
+    </script>
+</body>
+</html>

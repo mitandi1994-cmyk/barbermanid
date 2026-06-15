@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. SEO & META TAGS -->
+    <title>Barberman.id | Barbershop Premium, Franchise & Academy</title>
+    <meta name="description" content="Barberman.id adalah barbershop premium dengan standar internasional. Tersedia layanan cukur, franchise, lowongan kerja capster, dan akademi barber profesional.">
+    <meta name="keywords" content="barbershop, cukur rambut pria, franchise barbershop, sekolah barber, lowongan capster, potongan rambut 2026">
+    <meta name="author" content="Barberman Indonesia">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://barberman.id/">
+    <meta property="og:title" content="Barberman.id | The Ultimate Grooming">
+    <meta property="og:description" content="Redefining Men's Grooming. Sistem kemitraan terbaik dan standar potongan rambut internasional.">
+    <meta property="og:image" content="https://barbermanid.vercel.app/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://barberman.id/">
+    <meta property="twitter:title" content="Barberman.id | The Ultimate Grooming">
+    <meta property="twitter:description" content="Redefining Men's Grooming. Sistem kemitraan terbaik dan standar potongan rambut internasional.">
+    <meta property="twitter:image" content="https://barbermanid.vercel.app/logo.png">
+
+    <!-- 2. FAVICON -->
+    <link rel="icon" type="image/png" href="https://barbermanid.vercel.app/logo.png">
+
+    <!-- 3. SCHEMA.ORG (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BarberShop",
+      "name": "Barberman.id",
+      "image": "https://barbermanid.vercel.app/logo.png",
+      "@id": "https://barberman.id",
+      "url": "https://barberman.id",
+      "telephone": "+6281234567890",
+      "email": "halo@barberman.id",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Sentraland-ruko barberman.id",
+        "addressLocality": "Parung panjang",
+        "postalCode": "10270",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -6.2088,
+        "longitude": 106.8456
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "10:00",
+        "closes": "22:00"
+      },
+      "priceRange": "Rp 75.000 - Rp 300.000"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        barber: {
+                            black: '#0A0A0A',
+                            white: '#FAFAFA',
+                            red: '#E50000',
+                            gray: '#888888',
+                            light: '#EAEAEA'
+                        }
+                    },
+                    letterSpacing: {
+                        tighter: '-.04em',
+                        widest: '.25em',
+                        ultra: '.5em'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        body {
+            background-color: #FAFAFA;
+            color: #0A0A0A;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* INFINITE SCROLL ANIMATION CSS */
+        .scrolling-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .scrolling-track {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 40s linear infinite;
+        }
+        .scrolling-wrapper:hover .scrolling-track {
+            animation-play-state: paused;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Dynamic Island & Autocomplete */
+        #dynamic-island {
+            transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                        height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                        background-color 0.3s ease;
+        }
+        #search-dropdown {
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+        }
+        #search-dropdown.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Page Overlay Transitions */
+        .page-overlay {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-[200];
+            transform: scale(0.95);
+            overflow-y: auto;
+            background-color: #FAFAFA;
+        }
+        .page-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        img {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Prose for Article Detail */
+        .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #374151; }
+        .prose h2 { margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; color: #0A0A0A; }
+        .prose h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.25rem; font-weight: 700; color: #0A0A0A; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #4B5563; }
+        .prose li { margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="relative selection:bg-barber-red selection:text-white">
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div id="main-content">
+        
+        <!-- Dynamic Island Floating Nav -->
+        <nav id="dynamic-island" class="fixed top-6 left-1/2 -translate-x-1/2 bg-barber-black text-barber-white h-14 rounded-full flex flex-col items-center justify-start px-2 z-[100] shadow-[0_20px_40px_rgba(0,0,0,0.3)] w-[360px] overflow-hidden border border-zinc-800">
+            
+            <div class="w-full h-14 flex items-center justify-between px-2 shrink-0">
+                <div class="flex items-center space-x-5 pl-5 whitespace-nowrap" id="nav-links">
+                    <a href="#mitra" class="text-[9px] font-bold tracking-widest uppercase hover:text-barber-red transition-colors">Mitra</a>
+                    <a href="#loker" class="text-[9px] font-bold tracking-widest uppercase hover:text-barber-red transition-colors">Loker</a>
+                    <a href="#academy" class="text-[9px] font-bold tracking-widest uppercase hover:text-barber-red transition-colors">Academy</a>
+                    <a href="#artikel" class="text-[9px] font-bold tracking-widest uppercase hover:text-barber-red transition-colors">Artikel</a>
+                </div>
+
+                <div id="search-input-container" class="hidden items-center pl-4 w-full opacity-0 h-full">
+                    <input type="text" id="search-input" placeholder="Cari layanan, artikel..." class="bg-transparent border-none text-white text-xs w-full focus:outline-none placeholder-zinc-500 font-medium tracking-wide h-full">
+                </div>
+
+                <button id="search-btn" class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center hover:bg-barber-red transition-colors shrink-0 cursor-pointer ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+                </button>
+            </div>
+
+            <div id="search-dropdown" class="w-full bg-barber-black border-t border-zinc-800 rounded-b-2xl">
+                <ul class="py-2 px-2" id="autocomplete-list"></ul>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex flex-col items-center justify-center text-center relative px-4 pt-20">
+            <p class="text-[10px] md:text-xs tracking-ultra uppercase text-barber-gray font-bold mb-6">Redefining Men's Grooming</p>
+            
+            <div class="overflow-hidden w-full flex justify-center">
+                <h1 class="text-[15vw] md:text-[12rem] leading-[0.8] font-black tracking-tighter text-barber-black uppercase" style="opacity: 0;" id="hero-main-text">Barberman</h1>
+            </div>
+            
+            <div class="overflow-hidden flex items-center justify-center space-x-4 w-full">
+                <h1 class="text-[15vw] md:text-[12rem] leading-[0.8] font-black tracking-tighter text-barber-red uppercase" style="opacity: 0;" id="hero-sub-text">.ID</h1>
+                <svg width="10vw" height="10vw" viewBox="0 0 100 100" class="ml-4 md:w-32 md:h-32 shrink-0">
+                    <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <path class="anim-path stroke-barber-black" d="M10,90 L90,10" />
+                        <path class="anim-path stroke-barber-red" d="M30,90 L90,30" />
+                        <circle class="anim-path stroke-barber-black" cx="80" cy="20" r="10" />
+                        <circle class="anim-path stroke-barber-black" cx="20" cy="80" r="10" />
+                        <path class="anim-path stroke-barber-black" d="M25,25 L75,75" />
+                    </g>
+                </svg>
+            </div>
+            
+            <p class="text-[9px] md:text-[10px] tracking-widest uppercase text-barber-black font-semibold mt-12 max-w-md mx-auto mb-8">
+                Agency Barber Indonesia
+            </p>
+
+            <!-- NEW: TOMBOL DAFTAR FRANCHISE WHATSAPP -->
+            <div class="relative z-10 opacity-0 translate-y-10" id="hero-cta-container">
+                <a href="friencise.html" 
+                   target="_blank"
+                   class="group relative inline-flex items-center gap-3 bg-barber-black text-white px-8 py-4 rounded-full font-bold text-[10px] md:text-xs tracking-widest uppercase overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] border border-zinc-800">
+                    
+                    <!-- Icon Background Glow -->
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-barber-red/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                    
+                    <!-- Icon WA -->
+                    <span class="bg-green-500 rounded-full p-1.5 shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-8.683-2.031-9.676-.272-.099-.47-.149-.669-.149-.198 0-.42.001-.643.001-.223 0-.583.085-.89.417-.307.333-1.178 1.151-1.178 2.809 0 1.658 1.213 3.261 1.384 3.492.171.231 2.388 3.647 5.786 5.114 2.286.987 2.75.79 3.244.741.494-.049 1.586-.648 1.809-1.274.223-.626.223-1.162.156-1.274z"/></svg>
+                    </span>
+                    
+                    <span class="relative z-10">Daftar Franchise</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SCROLLING TEXT MARQUEE -->
+        <div class="w-full bg-barber-black py-4 border-y border-barber-red overflow-hidden flex items-center scrolling-wrapper">
+            <div class="scrolling-track items-center text-2xl md:text-5xl font-black tracking-tighter uppercase space-x-12">
+                <span>Open Franchise</span>
+                <span class="text-barber-red">•</span>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px white;">Premium Barbershop</span>
+                <span class="text-barber-red">•</span>
+                <span>Join Our Academy</span>
+                <span class="text-barber-red">•</span>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px white;">Loker Capster</span>
+                <span class="text-barber-red">•</span>
+                <span>Open Franchise</span>
+                <span class="text-barber-red">•</span>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px white;">Premium Barbershop</span>
+                <span class="text-barber-red">•</span>
+                <span>Join Our Academy</span>
+                <span class="text-barber-red">•</span>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px white;">Loker Capster</span>
+                <span class="text-barber-red">•</span>
+            </div>
+        </div>
+
+        <!-- STATS SECTION -->
+        <section class="py-24 px-6 max-w-7xl mx-auto flex flex-col items-center justify-center">
+            <h2 class="text-[10px] tracking-ultra uppercase text-barber-gray font-bold mb-16 text-center">Analisa & Perkembangan</h2>
+            <div class="stats-grid w-full max-w-5xl text-center border-y border-barber-light py-12">
+                <div class="flex flex-col items-center justify-center">
+                    <span class="text-6xl md:text-8xl font-black tracking-tighter text-barber-black stat-number" data-target="51">0</span>
+                    <span class="text-barber-red font-black text-4xl mb-2">+</span>
+                    <span class="text-[9px] tracking-widest uppercase font-bold text-barber-gray">Cabang Aktif</span>
+                </div>
+                <div class="flex flex-col items-center justify-center border-x border-transparent md:border-barber-light">
+                    <span class="text-6xl md:text-8xl font-black tracking-tighter text-barber-black stat-number" data-target="320">0</span>
+                    <span class="text-barber-red font-black text-4xl mb-2">+</span>
+                    <span class="text-[9px] tracking-widest uppercase font-bold text-barber-gray">Total Mitra</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <span class="text-6xl md:text-8xl font-black tracking-tighter text-barber-black stat-number" data-target="95">0</span>
+                    <span class="text-barber-red font-black text-4xl mb-2">%</span>
+                    <span class="text-[9px] tracking-widest uppercase font-bold text-barber-gray">Success Rate</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAROUSEL SECTION -->
+        <section class="py-12 w-full overflow-hidden bg-barber-white">
+            <p class="text-[10px] tracking-ultra uppercase text-barber-black font-bold mb-8 text-center">Galeri & Suasana</p>
+            <div class="scrolling-wrapper px-[5vw]">
+                <div class="scrolling-track gap-6">
+                    <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://barbermanid.vercel.app/potongan.jpeg" alt="Haircut" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">Fade & Taper</h3>
+                        </div>
+                    </div>
+                    <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://barbermanid.vercel.app/style.jpg" alt="Style" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">Modern Texture</h3>
+                        </div>
+                    </div>
+                    <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://placehold.co/800x1000/FFFFFF/0A0A0A.png?text=CLEAN+SHAVE" alt="Shave" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">Hot Towel Shave</h3>
+                        </div>
+                    </div>
+                    <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://barbermanid.vercel.app/barbershop.jpg" alt="Interior" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">VIP Lounge</h3>
+                        </div>
+                    </div>
+                     <!-- Duplicates -->
+                     <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://barbermanid.vercel.app/potongan.jpeg" alt="Haircut" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">Fade & Taper</h3>
+                        </div>
+                    </div>
+                    <div class="snap-center shrink-0 w-[70vw] md:w-[30vw] h-[40vh] md:h-[50vh] rounded-[2rem] overflow-hidden relative group">
+                        <img src="https://barbermanid.vercel.app/style.jpg" alt="Style" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                            <h3 class="text-white text-lg md:text-2xl font-black uppercase tracking-tight">Modern Texture</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MITRA & LOKER SECTION -->
+        <section class="py-24 px-4 w-full bg-barber-white relative" id="mitra">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- MITRA -->
+        <div class="bg-barber-black rounded-[3rem] p-10 md:p-16 text-center flex flex-col items-center justify-center min-h-[60vh] relative overflow-hidden group">
+
+            <!-- BORDER CLICK AREA -->
+            <a href="mitra.html"
+               class="absolute inset-0 z-0">
+                <div class="absolute inset-0 border border-zinc-800 rounded-[3rem] scale-[0.95] group-hover:scale-100 transition-transform duration-500"></div>
+            </a>
+
+            <p class="text-[9px] tracking-widest uppercase text-barber-red font-bold mb-4 z-10">
+                Peluang Bisnis
+            </p>
+
+            <h2 class="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase mb-6 z-10">
+                Buka<br>Mitra
+            </h2>
+
+            <p class="text-xs text-barber-gray max-w-sm mb-10 z-10">
+                Bergabunglah dengan jaringan barbershop dengan pertumbuhan tercepat. ROI tinggi, dukungan manajemen penuh, dan branding yang kuat.
+            </p>
+
+            <!-- WHATSAPP BUTTON -->
+            <a href="https://wa.me/6282266662331?text=Halo%20Admin%20Barberman.id,%20saya%20tertarik%20untuk%20membuka%20Franchise%20Barberman.%20Mohon%20info%20lebih%20lanjut."
+               target="_blank"
+               class="z-10 inline-block bg-white text-black text-[10px] font-black uppercase tracking-widest py-4 px-8 rounded-full hover:bg-barber-red hover:text-white transition-colors">
+                Daftar Sekarang!!
+            </a>
+
+        </div>
+
+        <!-- LOKER -->
+        <div id="loker" class="bg-barber-red rounded-[3rem] p-10 md:p-16 text-center flex flex-col items-center justify-center min-h-[60vh] relative overflow-hidden group">
+
+            <!-- BORDER CLICK AREA -->
+            <a href="https://barbermanid.vercel.app/capster.html"
+               class="absolute inset-0 z-0">
+                <div class="absolute inset-0 border border-red-800 rounded-[3rem] scale-[0.95] group-hover:scale-100 transition-transform duration-500"></div>
+            </a>
+
+            <p class="text-[9px] tracking-widest uppercase text-black font-bold mb-4 z-10">
+                Karir Profesional
+            </p>
+
+            <h2 class="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase mb-6 z-10">
+                Loker<br>Capster
+            </h2>
+
+            <p class="text-xs text-white/80 max-w-sm mb-10 z-10">
+                Dicari barberman / capster berpengalaman. Gaji kompetitif, bonus target, dan lingkungan kerja yang profesional & modern.
+            </p>
+
+            <!-- WHATSAPP BUTTON -->
+            <a href="https://wa.me/6282266662331?text=Halo%20Tim%20HRD%20Barberman.id,%20saya%20ingin%20mengirim%20CV%20untuk%20posisi%20Capster."
+               target="_blank"
+               class="z-10 inline-block bg-black text-white text-[10px] font-black uppercase tracking-widest py-4 px-8 rounded-full hover:bg-white hover:text-black transition-colors">
+                Kirim CV
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+        <!-- ACADEMY SECTION -->
+        <section id="academy" class="py-32 w-full flex flex-col items-center justify-center bg-barber-black text-white px-4 border-y border-barber-red">
+            <p class="text-[10px] tracking-ultra uppercase text-barber-gray font-bold mb-8">Edukasi & Pelatihan</p>
+            <div class="max-w-4xl text-center mb-12">
+                <h2 class="text-6xl md:text-[8rem] leading-[0.85] font-black tracking-tighter uppercase mb-8">
+                    <span class="text-transparent" style="-webkit-text-stroke: 2px white;">Barber</span><br>Academy
+                </h2>
+                <p class="text-sm md:text-base text-barber-gray max-w-2xl mx-auto font-light leading-relaxed">
+                    Dari pemula hingga profesional. Pelajari teknik cukur rambut pria standar internasional, ilmu memudar (fading), styling modern, hingga manajemen pelayanan pelanggan langsung dari para master barber kami.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-6 py-2 rounded-full border border-zinc-700 text-[10px] uppercase tracking-widest font-bold hover:border-barber-red transition-colors">Basic Course</span>
+                <span class="px-6 py-2 rounded-full border border-zinc-700 text-[10px] uppercase tracking-widest font-bold hover:border-barber-red transition-colors">Advanced Fading</span>
+                <span class="px-6 py-2 rounded-full border border-zinc-700 text-[10px] uppercase tracking-widest font-bold hover:border-barber-red transition-colors">Business Management</span>
+            </div>
+            <a href="https://wa.me/6282266662331?text=Halo%20Academy,%20saya%20ingin%20mendaftar%20kelas%20barber." target="_blank" class="mt-16 bg-barber-red text-white text-[10px] font-black uppercase tracking-widest py-5 px-12 rounded-full hover:bg-white hover:text-black transition-colors shadow-[0_0_30px_rgba(229,0,0,0.4)]">Daftar Academy</a>
+        </section>
+        
+        <!-- NEW SECTION: LOKASI CABANG (BRANCHES) -->
+        <section id="cabang" class="py-24 bg-barber-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left Side: Info -->
+                    <div class="lg:col-span-4 sticky top-24">
+                        <p class="text-[10px] tracking-ultra uppercase text-barber-red font-bold mb-4">Jaringan Kami</p>
+                        <h2 class="text-5xl md:text-6xl font-black tracking-tighter text-barber-black uppercase mb-6 leading-tight">
+                            Temukan<br>Cabang<br>Terdekat
+                        </h2>
+                        <p class="text-sm text-gray-600 mb-8 leading-relaxed">
+                            Dengan lebih dari 50 cabang di seluruh Indonesia, pengalaman grooming premium kini ada di dekat mata Anda. Klik lokasi untuk mendapatkan arah via Google Maps.
+                        </p>
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex items-center space-x-3 text-sm font-bold text-barber-black">
+                                <div class="w-2 h-2 bg-barber-red rounded-full animate-pulse"></div>
+                                <span>Buka Setiap Hari (10:00 - 22:00)</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-sm font-bold text-barber-black">
+                                <div class="w-2 h-2 bg-barber-red rounded-full"></div>
+                                <span>Free Wi-Fi & Kopi Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Scrollable Menu List -->
+                    <div class="lg:col-span-8">
+                        <div class="bg-barber-black rounded-[2.5rem] p-2 relative shadow-2xl">
+                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none rounded-[2.5rem] z-10"></div>
+                            
+                            <!-- Header Menu -->
+                            <div class="bg-zinc-900/50 rounded-[2rem] px-6 py-4 mb-2 flex justify-between items-center text-zinc-400 text-[10px] uppercase tracking-widest font-bold border-b border-zinc-800">
+                                <span>Nama Cabang</span>
+                                <span>Lokasi</span>
+                                <span>Aksi</span>
+                            </div>
+                            
+                            <!-- List Container (Scrollable) -->
+                            <div class="h-[600px] overflow-y-auto no-scrollbar space-y-2 pr-2 pl-2 pb-4" id="branch-list-container">
+                                <!-- Content injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTICLES SECTION -->
+        <section id="artikel" class="py-24 px-4 w-full bg-barber-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-12 border-b border-black pb-4">
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-black uppercase">Jurnal</h2>
+                    <button onclick="showPage('all-journals')" class="text-[10px] uppercase tracking-widest font-bold text-barber-red hover:text-black transition-colors cursor-pointer">Lihat Semua</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="home-articles-grid">
+                    <!-- Articles injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER WITH CONTACT INFO -->
+        <footer class="bg-barber-black py-16 px-4 text-center border-t border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                <!-- Brand -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-4xl font-black tracking-tighter text-white uppercase mb-6">Barberman<span class="text-barber-red">.ID</span></h2>
+                    <p class="text-xs text-zinc-500 leading-relaxed max-w-sm mx-auto md:mx-0">
+                        Membangun standar baru dalam industri pria Indonesia. Grooming premium, edukasi profesional, dan peluang bisnis tanpa batas.
+                    </p>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-6 border-b border-zinc-800 pb-2">Kontak Kami</h3>
+                    
+                    <a href="https://wa.me/6281234567890" class="flex items-center space-x-4 group">
+                        <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center group-hover:bg-barber-red transition-colors">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-8.683-2.031-9.676-.272-.099-.47-.149-.669-.149-.198 0-.42.001-.643.001-.223 0-.583.085-.89.417-.307.333-1.178 1.151-1.178 2.809 0 1.658 1.213 3.261 1.384 3.492.171.231 2.388 3.647 5.786 5.114 2.286.987 2.75.79 3.244.741.494-.049 1.586-.648 1.809-1.274.223-.626.223-1.162.156-1.274z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-zinc-500 uppercase tracking-widest">WhatsApp</p>
+                            <p class="text-sm text-white font-medium group-hover:text-barber-red transition-colors">+62 8226-6662-331</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:halo@barberman.id" class="flex items-center space-x-4 group">
+                        <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center group-hover:bg-barber-red transition-colors">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-zinc-500 uppercase tracking-widest">Email</p>
+                            <p class="text-sm text-white font-medium group-hover:text-barber-red transition-colors">barberman.id@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 mt-1">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-zinc-500 uppercase tracking-widest">Alamat Head Office</p>
+                            <p class="text-sm text-white font-medium leading-relaxed">Jl. Jend. Sudirman No. 88, Senayan<br>Jakarta Pusat, 10270</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socials -->
+                <div class="flex flex-col justify-center space-y-6">
+                     <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-2 border-b border-zinc-800 pb-2">Sosial Media</h3>
+                    <a href="#" class="text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors text-left">Instagram</a>
+                    <a href="#" class="text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors text-left">Tiktok</a>
+                    <a href="#" class="text-[10px] tracking-widest uppercase text-zinc-500 hover:text-white transition-colors text-left">YouTube</a>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-zinc-900">
+                <p class="text-[8px] tracking-ultra text-zinc-600 uppercase">&copy; 2026 Barberman Indonesia. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <!-- END MAIN CONTENT -->
+
+    <!-- PAGE 1: LIHAT SEMUA JURNAL -->
+    <div id="all-journals" class="page-overlay bg-barber-white text-barber-black">
+        <div class="max-w-7xl mx-auto px-4 py-24 min-h-screen flex flex-col">
+            <div class="flex justify-between items-center mb-16 sticky top-0 bg-barber-white/90 backdrop-blur-md py-4 z-10 border-b border-gray-100">
+                <h1 class="text-4xl font-black uppercase tracking-tighter">Semua Jurnal</h1>
+                <button onclick="hidePage('all-journals')" class="flex items-center space-x-2 hover:text-barber-red transition-colors">
+                    <span class="text-xs font-bold uppercase tracking-widest">Kembali</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="all-journals-grid">
+                <!-- Articles injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: SEARCH RESULT -->
+    <div id="search-result" class="page-overlay bg-barber-white text-barber-black">
+        <div class="max-w-4xl mx-auto px-4 py-24 min-h-screen">
+            <div class="mb-12 border-b border-black pb-6 flex justify-between items-end">
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest text-barber-gray mb-2">Hasil Pencarian</p>
+                    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">"<span id="search-query-display">...</span>"</h1>
+                </div>
+                <button onclick="hidePage('search-result')" class="text-xs font-bold uppercase hover:text-barber-red">Tutup</button>
+            </div>
+
+            <div id="search-results-list" class="flex flex-col gap-6"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: DETAIL JURNAL -->
+    <div id="journal-detail" class="page-overlay bg-barber-white text-barber-black">
+        <div class="max-w-3xl mx-auto px-4 py-12 min-h-screen flex flex-col">
+            <!-- Header -->
+            <div class="sticky top-0 bg-barber-white/95 backdrop-blur-sm z-20 py-4 flex items-center justify-between border-b border-gray-100">
+                <button onclick="hidePage('journal-detail')" class="w-10 h-10 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+                </button>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Baca Mode</span>
+                <div class="w-10"></div> <!-- Spacer for balance -->
+            </div>
+
+            <!-- Hero Image -->
+            <div class="w-full h-[50vh] rounded-3xl overflow-hidden mb-8 mt-4 relative group">
+                <img id="detail-image" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                    <span id="detail-category" class="inline-block px-3 py-1 bg-barber-red text-white text-[10px] font-bold uppercase tracking-widest rounded-full mb-3">Style</span>
+                    <h1 id="detail-title" class="text-3xl md:text-5xl font-black text-white uppercase leading-tight">Title</h1>
+                </div>
+            </div>
+
+            <!-- Meta -->
+            <div class="flex items-center space-x-4 text-xs text-gray-500 mb-8 font-mono">
+                <span id="detail-date">12 Jan 2026</span>
+                <span>•</span>
+                <span id="detail-readtime">5 min read</span>
+            </div>
+
+            <!-- Content -->
+            <article class="prose max-w-none">
+                <div id="detail-body">
+                    <!-- Content injected here -->
+                </div>
+            </article>
+
+            <!-- Share / CTA -->
+            <div class="mt-12 pt-12 border-t border-gray-200 text-center">
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Bagikan artikel ini</p>
+                <div class="flex justify-center space-x-4">
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-barber-red hover:text-white transition-colors">FB</button>
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-barber-red hover:text-white transition-colors">TW</button>
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-barber-red hover:text-white transition-colors">WA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANIME.JS & CUSTOM LOGIC -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- DATA JURNAL LENGKAP ---
+            const articles = [
+                {
+                    id: 1,
+                    title: "Tren Potongan Rambut Pria 2026",
+                    category: "Style Guide",
+                    date: "10 Jan 2026",
+                    readTime: "5 min",
+                    image: "https://barbermanid.vercel.app/trendrambut2026.png",
+                    snippet: "Eksplorasi gaya rambut terbaru yang akan mendominasi tahun ini.",
+                    content: `<p>Tahun 2026 membawa angin segar dalam dunia grooming pria. Kalau kita melihat beberapa tahun ke belakang, tren rambut pria cenderung didominasi oleh gaya yang sangat rapi, sangat “clean”, bahkan kadang terlalu kaku dan terlihat dipaksakan. Namun memasuki 2026, arah perubahan mulai terasa jelas: gaya rambut pria bergerak ke arah yang lebih natural, bertekstur, dan fleksibel, tanpa kehilangan unsur rapi dan terkontrol.</p>
+                    <h2>The Textured Crop</h2>
+                    <p>Textured Crop di tahun 2026 bisa dibilang sudah naik level dari versi klasiknya. Jika dulu crop cut identik dengan potongan pendek simpel dan rapi, kini gaya ini berubah menjadi lebih berani, lebih “hidup”, dan penuh karakter.</p>
+                    <ul>
+                        <li>Pertahankan volume di bagian mahkota.</li>
+                        <li>Gunakan pomade water-based untuk hasil kilau natural.</li>
+                        <li>Rapikan bagian telinga dan tengkuk setiap 2 minggu sekali.</li>
+                    </ul>`
+                },
+                {
+                    id: 2,
+                    title: "Cara Merawat Brewok Agar Lebat",
+                    category: "Grooming",
+                    date: "15 Jan 2026",
+                    readTime: "4 min",
+                    image: "https://barbermanid.vercel.app/breadcare.png",
+                    snippet: "Panduan lengkap menggunakan beard oil dan balm untuk mempertahankan kelembapan.",
+                    content: `<p>Memiliki brewok yang lebat dan sehat adalah impian banyak pria. Namun, tumbuhnya brewok saja tidak cukup. Perawatan yang tepat sangat penting untuk menghindari rasa gatal, ketombe di brewok, dan tekstur yang kasar.</p>
+                    <h3>1. Cuci Bersih</h3>
+                    <p>Gunakan beard wash khusus, jangan pakai sabun tubuh biasa karena terlalu keras dan bisa menghilangkan minyak alami.</p>
+                    `
+                },
+                {
+                    id: 3,
+                    title: "Sejarah Pomade: Dari Minyak Beruang hingga Water-based",
+                    category: "History",
+                    date: "20 Jan 2026",
+                    readTime: "6 min",
+                    image: "https://placehold.co/600x400/0A0A0A/FFFFFF.png?text=POMADE+HISTORY",
+                    snippet: "Perjalanan panjang produk styling favorit pria selama lebih dari satu abad.",
+                    content: `<p>Pomade pertama kali muncul pada abad ke-19. Awalnya, bahan utamanya adalah lemak beruang! Kini, kita memiliki berbagai varian water-based yang mudah dicuci.</p>`
+                },
+                {
+                    id: 4,
+                    title: "5 Alat Cukur Wajib Punya di Rumah",
+                    category: "Gear",
+                    date: "22 Jan 2026",
+                    readTime: "3 min",
+                    image: "https://placehold.co/600x400/0A0A0A/FFFFFF.png?text=SHAVING+GEAR",
+                    snippet: "Jangan hanya mengandalkan gunting biasa. Ini alat-alat profesional untuk merapikan diri sendiri.",
+                    content: `<p>1. Gunting rambut tajam. <br>2. Clipper elektrik. <br>3. Safety razor untuk hasil bersih. <br>4. Cermin cembung. <br>5. Sikat brewok.</p>`
+                }
+            ];
+
+            // --- RENDER ARTICLES ---
+            const renderArticles = (containerId, limit = null) => {
+                const container = document.getElementById(containerId);
+                const dataToRender = limit ? articles.slice(0, limit) : articles;
+                
+                container.innerHTML = dataToRender.map(article => `
+                    <div class="group cursor-pointer" onclick="openJournal(${article.id})">
+                        <div class="w-full aspect-[4/3] overflow-hidden rounded-2xl mb-4 relative">
+                            <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-black text-white text-[9px] uppercase font-bold tracking-widest rounded-full">${article.category}</span>
+                            </div>
+                        </div>
+                        <p class="text-[10px] text-gray-500 font-mono mb-2">${article.date} • ${article.readTime} Read</p>
+                        <h3 class="text-xl font-black uppercase leading-tight group-hover:text-barber-red transition-colors">${article.title}</h3>
+                        <p class="text-sm text-gray-600 mt-2 line-clamp-2">${article.snippet}</p>
+                    </div>
+                `).join('');
+            };
+
+            renderArticles('home-articles-grid', 3);
+            renderArticles('all-journals-grid');
+
+            // --- RENDER LOCATIONS (BRANCHES) ---
+            const branches = [
+                { name: "Barberman ID Senayan", loc: "Jakarta Pusat", map: "https://goo.gl/maps/placeholder1" },
+                { name: "Barberman ID Kemang", loc: "Jakarta Selatan", map: "https://goo.gl/maps/placeholder2" },
+                { name: "Barberman ID BSD", loc: "Tangerang", map: "https://goo.gl/maps/placeholder3" },
+                { name: "Barberman ID Bandung", loc: "Jawa Barat", map: "https://goo.gl/maps/placeholder4" },
+                { name: "Barberman ID Surabaya", loc: "Jawa Timur", map: "https://goo.gl/maps/placeholder5" },
+                { name: "Barberman ID Yogyakarta", loc: "D.I. Yogyakarta", map: "https://goo.gl/maps/placeholder6" },
+                { name: "Barberman ID Medan", loc: "Sumatera Utara", map: "https://goo.gl/maps/placeholder7" },
+                { name: "Barberman ID Palembang", loc: "Sumatera Selatan", map: "https://goo.gl/maps/placeholder8" },
+                { name: "Barberman ID Makassar", loc: "Sulawesi Selatan", map: "https://goo.gl/maps/placeholder9" },
+                { name: "Barberman ID Denpasar", loc: "Bali", map: "https://goo.gl/maps/placeholder10" }
+            ];
+
+            const branchContainer = document.getElementById('branch-list-container');
+            branchContainer.innerHTML = branches.map(branch => `
+                <div class="bg-zinc-900 rounded-xl p-4 flex justify-between items-center text-white hover:bg-zinc-800 transition-colors border border-transparent hover:border-zinc-700">
+                    <div class="flex-1">
+                        <h4 class="font-bold uppercase text-sm tracking-wider">${branch.name}</h4>
+                        <p class="text-zinc-500 text-xs mt-1">${branch.loc}</p>
+                    </div>
+                    <a href="${branch.map}" target="_blank" class="px-4 py-2 bg-barber-red rounded-lg text-xs font-bold uppercase hover:bg-red-600 transition-colors">Maps</a>
+                </div>
+            `).join('');
+
+            // --- ANIMATIONS (Anime.js) ---
+            
+            // Hero Animation Sequence
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 1000
+            });
+
+            tl
+            .add({
+                targets: '#hero-main-text',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1200
+            })
+            .add({
+                targets: '#hero-sub-text',
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                duration: 1000
+            }, '-=800')
+            .add({
+                targets: '.anim-path',
+                strokeDashoffset: [anime.setDashoffset, 0],
+                easing: 'easeInOutSine',
+                duration: 1500,
+                delay: anime.stagger(100)
+            }, '-=800')
+            .add({
+                targets: '#hero-cta-container',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=600');
+
+            // Stats Counter Animation
+            const statsSection = document.querySelector('.stats-grid');
+            let statsAnimated = false;
+
+            const animateStats = () => {
+                if(statsAnimated) return;
+                
+                const stats = document.querySelectorAll('.stat-number');
+                stats.forEach(stat => {
+                    const target = +stat.getAttribute('data-target');
+                    anime({
+                        targets: stat,
+                        innerHTML: [0, target],
+                        round: 1,
+                        easing: 'easeOutExpo',
+                        duration: 2000,
+                        update: function(a) {
+                            stat.innerHTML = a.animations[0].currentValue.toFixed(0);
+                        }
+                    });
+                });
+                statsAnimated = true;
+            };
+
+            // Intersection Observer for Stats
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        animateStats();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            if(statsSection) observer.observe(statsSection);
+
+            // --- DYNAMIC ISLAND & SEARCH LOGIC ---
+            const searchBtn = document.getElementById('search-btn');
+            const searchInputContainer = document.getElementById('search-input-container');
+            const searchInput = document.getElementById('search-input');
+            const searchDropdown = document.getElementById('search-dropdown');
+            const dynamicIsland = document.getElementById('dynamic-island');
+            const navLinks = document.getElementById('nav-links');
+            const autocompleteList = document.getElementById('autocomplete-list');
+
+            let isSearchOpen = false;
+
+            // Fungsi Update UI Search Bar
+            const updateSearchUI = () => {
+                if(isSearchOpen) {
+                    searchInputContainer.classList.remove('hidden', 'opacity-0');
+                    searchInputContainer.classList.add('flex', 'opacity-100');
+                    navLinks.classList.add('hidden');
+                    // Lebar diperbesar saat search dibuka
+                    dynamicIsland.style.width = window.innerWidth < 768 ? '90vw' : '500px';
+                    setTimeout(() => searchInput.focus(), 300);
+                } else {
+                    searchInputContainer.classList.add('hidden', 'opacity-0');
+                    searchInputContainer.classList.remove('flex', 'opacity-100');
+                    navLinks.classList.remove('hidden');
+                    // Lebar kembali normal
+                    dynamicIsland.style.width = '360px';
+                    searchDropdown.classList.remove('active');
+                    searchInput.value = ''; // Reset input
+                }
+            };
+
+            searchBtn.addEventListener('click', () => {
+                isSearchOpen = !isSearchOpen;
+                updateSearchUI();
+            });
+
+            // Logic Autocomplete saat Mengetik
+            searchInput.addEventListener('input', (e) => {
+                const val = e.target.value.toLowerCase();
+                autocompleteList.innerHTML = '';
+                
+                if(val.length > 0) {
+                    const filtered = articles.filter(a => a.title.toLowerCase().includes(val) || a.snippet.toLowerCase().includes(val));
+                    
+                    if(filtered.length > 0) {
+                        searchDropdown.classList.add('active');
+                        filtered.forEach(item => {
+                            const li = document.createElement('li');
+                            li.className = 'px-4 py-3 hover:bg-zinc-800 cursor-pointer text-xs text-white rounded-lg transition-colors flex flex-col';
+                            li.innerHTML = `<span class="font-bold">${item.title}</span> <span class="text-zinc-500 text-[9px] uppercase mt-1">${item.category}</span>`;
+                            
+                            // Logic klik item autocomplete
+                            li.onclick = () => {
+                                openJournal(item.id);
+                                // Reset Search UI
+                                isSearchOpen = false;
+                                updateSearchUI();
+                            };
+                            autocompleteList.appendChild(li);
+                        });
+                    } else {
+                        searchDropdown.classList.remove('active');
+                    }
+                } else {
+                    searchDropdown.classList.remove('active');
+                }
+            });
+
+            // --- LOGIC KLIK DI LUAR SEARCH BAR (Click Outside) ---
+            document.addEventListener('click', (event) => {
+                // Cek apakah target klik adalah Dynamic Island atau anak-anaknya
+                const isClickInsideIsland = dynamicIsland.contains(event.target);
+
+                // Jika search sedang OPEN DAN klik di LUAR island
+                if (isSearchOpen && !isClickInsideIsland) {
+                    isSearchOpen = false;
+                    updateSearchUI();
+                }
+            });
+
+            // Global Search Function (untuk tombol lain jika ada)
+            window.performSearch = (query) => {
+                if(!query) return;
+                const filtered = articles.filter(a => a.title.toLowerCase().includes(query) || a.snippet.toLowerCase().includes(query));
+                
+                const resultsList = document.getElementById('search-results-list');
+                document.getElementById('search-query-display').textContent = query;
+                
+                if(filtered.length > 0) {
+                    resultsList.innerHTML = filtered.map(item => `
+                        <div class="border-b border-gray-200 pb-4 cursor-pointer group" onclick="openJournal(${item.id})">
+                            <h3 class="text-2xl font-black uppercase group-hover:text-barber-red transition-colors">${item.title}</h3>
+                            <p class="text-gray-500 mt-1">${item.snippet}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    resultsList.innerHTML = '<p class="text-gray-500">Tidak ada artikel ditemukan.</p>';
+                }
+                
+                showPage('search-result');
+            };
+
+            // --- PAGE OVERLAY LOGIC ---
+            window.showPage = (pageId) => {
+                document.getElementById(pageId).classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            };
+
+            window.hidePage = (pageId) => {
+                document.getElementById(pageId).classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            };
+
+            // --- JOURNAL DETAIL LOGIC ---
+            window.openJournal = (id) => {
+                const article = articles.find(a => a.id === id);
+                if(!article) return;
+
+                document.getElementById('detail-image').src = article.image;
+                document.getElementById('detail-category').textContent = article.category;
+                document.getElementById('detail-title').textContent = article.title;
+                document.getElementById('detail-date').textContent = article.date;
+                document.getElementById('detail-readtime').textContent = article.readTime;
+                document.getElementById('detail-body').innerHTML = article.content;
+
+                showPage('journal-detail');
+                window.scrollTo(0, 0);
+            };
+
+        });
+    </script>
+</body>
+</html>

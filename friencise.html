@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barberman.id - Kemitraan Franchise Barbershop Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Syne (Premium Display) & Inter (Clean Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            darker: '#050505',
+                            white: '#f5f5f7',
+                            red: '#e11d48', // Vibrant red-600
+                            redHover: '#be123c' // red-700
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e11d48;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #be123c;
+        }
+        
+        /* Custom dynamic island styling */
+        .dynamic-island {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .animated-gradient-text {
+            background: linear-gradient(to right, #ffffff, #e11d48, #ffffff);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+        }
+        
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* SVG pole animation */
+        @keyframes poleSlide {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+        .barber-pole-pattern {
+            background: repeating-linear-gradient(
+                45deg,
+                #0a0a0a,
+                #0a0a0a 15px,
+                #e11d48 15px,
+                #e11d48 30px,
+                #f5f5f7 30px,
+                #f5f5f7 45px
+            );
+            background-size: 100px 100px;
+            animation: poleSlide 3s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-brand-white font-sans overflow-x-hidden selection:bg-brand-red selection:text-white">
+
+    <!-- DYNAMIC ISLAND TOP NAV -->
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4 pointer-events-none">
+        <div id="dynamic-island" class="dynamic-island pointer-events-auto mx-auto bg-black/90 backdrop-blur-md text-brand-white px-4 py-3 rounded-full border border-neutral-800 shadow-[0_0_30px_rgba(225,29,72,0.15)] flex items-center justify-between w-full">
+            
+            <!-- Back Button -->
+            <a href="index.html" class="group flex items-center gap-2 text-xs md:text-sm font-medium hover:text-brand-red transition-all py-1 px-3 rounded-full bg-neutral-900/50 border border-neutral-800/60 hover:border-brand-red/50">
+                <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
+                <span>Kembali</span>
+            </a>
+
+            <!-- Brand Logo / Island Core -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
+                <span class="font-display font-extrabold text-sm tracking-wider">BARBERMAN<span class="text-brand-red">.ID</span></span>
+            </div>
+
+            <!-- Home Button/Action -->
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 text-xs md:text-sm font-medium hover:text-brand-red transition-all py-1 px-3 rounded-full bg-neutral-900/50 border border-neutral-800/60 hover:border-brand-red/50">
+                <i class="fa-solid fa-house transition-transform group-hover:scale-110"></i>
+                <span>Home</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <!-- Abstract Background Effects -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(225,29,72,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="absolute top-20 right-[-10%] w-96 h-96 bg-brand-red/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-20 left-[-10%] w-96 h-96 bg-brand-red/5 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <!-- Animated Barber Pole Line Indicator (Left & Right borders) -->
+        <div class="absolute left-0 top-0 bottom-0 w-1.5 barber-pole-pattern opacity-40"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-1.5 barber-pole-pattern opacity-40"></div>
+
+        <div class="max-w-6xl mx-auto text-center z-10 relative">
+            
+            <!-- Animated SVG Crown/Scissors -->
+            <div id="hero-logo-svg" class="mb-8 opacity-0">
+                <svg class="mx-auto w-24 h-24 text-brand-red" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <!-- Scissors Path -->
+                    <circle cx="35" cy="70" r="8" stroke-dasharray="2" />
+                    <circle cx="65" cy="70" r="8" stroke-dasharray="2" />
+                    <!-- Replaced lines with fully-defined paths and static offsets to avoid getTotalLength errors -->
+                    <path d="M 39 63 L 60 25" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100" class="draw-line-1" />
+                    <path d="M 61 63 L 40 25" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100" class="draw-line-2" />
+                    <!-- Crown atop -->
+                    <path d="M35 15 L42 22 L50 15 L58 22 L65 15 L62 28 L38 28 Z" fill="rgba(225,29,72,0.1)" stroke="currentColor" stroke-linejoin="round" />
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-display text-4xl sm:text-6xl md:text-8xl font-black tracking-tight leading-none mb-6 text-reveal">
+                REVOLUSI BISNIS<br/>
+                <span class="animated-gradient-text">BARBERSHOP</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-neutral-400 text-sm sm:text-lg md:text-xl mb-10 leading-relaxed opacity-0 text-fade-in">
+                Miliki bisnis autopilot dengan margin keuntungan tinggi. Gabung dalam jaringan kemitraan eksklusif <strong class="text-brand-white">Barberman.id</strong> dan raih kesuksesan finansial berkelanjutan.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 buttons-fade-in">
+                <a href="#daftar-section" class="w-full sm:w-auto px-8 py-4 bg-brand-red hover:bg-brand-redHover text-white font-bold rounded-xl shadow-[0_4px_20px_rgba(225,29,72,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>Daftar Franchise</span>
+                </a>
+                <a href="#prospektus-section" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-neutral-900 text-brand-white border border-neutral-800 hover:border-neutral-700 font-bold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-circle-info text-brand-red"></i>
+                    <span>Pelajari Konsep</span>
+                </a>
+            </div>
+
+            <!-- Interactive Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-neutral-900 max-w-4xl mx-auto text-left opacity-0 stats-fade-in">
+                <div class="p-4 border-l border-brand-red">
+                    <h3 class="font-display text-3xl md:text-4xl font-extrabold text-brand-white">50+</h3>
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1">Outlet Aktif</p>
+                </div>
+                <div class="p-4 border-l border-brand-red">
+                    <h3 class="font-display text-3xl md:text-4xl font-extrabold text-brand-white">100%</h3>
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1">Sistem Autopilot</p>
+                </div>
+                <div class="p-4 border-l border-brand-red">
+                    <h3 class="font-display text-3xl md:text-4xl font-extrabold text-brand-white">18 Bln</h3>
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1">Rata-rata BEP</p>
+                </div>
+                <div class="p-4 border-l border-brand-red">
+                    <h3 class="font-display text-3xl md:text-4xl font-extrabold text-brand-white">4.8★</h3>
+                    <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1">Rating Kepuasan</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mouse Scroll Down indicator -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
+            <span class="text-xs tracking-widest text-neutral-500 uppercase">Scroll kebawah</span>
+            <div class="w-5 h-8 border-2 border-neutral-700 rounded-full flex justify-center p-1">
+                <div class="w-1 h-2 bg-brand-red rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCEPT / PROSPEKTUS SECTION -->
+    <section id="prospektus-section" class="py-24 px-6 bg-brand-darker relative border-y border-neutral-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+                <div class="max-w-xl text-left">
+                    <span class="text-xs uppercase tracking-widest text-brand-red font-bold block mb-2">// MENGAPA KAMI</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-extrabold text-brand-white leading-tight scroll-trigger-title">
+                        Mengapa Memilih Franchise Barberman.id?
+                    </h2>
+                </div>
+                <p class="text-neutral-400 text-sm md:text-base max-w-md text-left">
+                    Kami tidak hanya menawarkan bisnis potong rambut, melainkan sebuah gaya hidup modern dengan manajemen modern yang sepenuhnya teruji dan menguntungkan.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="scroll-card bg-neutral-900/50 border border-neutral-800/80 p-8 rounded-2xl hover:border-brand-red/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-neutral-950 flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles text-brand-red text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-white">Desain Premium & Modern</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Arsitektur interior barber bergaya industrial-maskulin yang sangat Instagrammable untuk menarik minat generasi muda dan urban.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="scroll-card bg-neutral-900/50 border border-neutral-800/80 p-8 rounded-2xl hover:border-brand-red/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-neutral-950 flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gauge-high text-brand-red text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-white">Sistem POS & Aplikasi AI</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Monitoring arus kas, kehadiran tim barber, stok produk, hingga reservasi online dari mana saja secara real-time melalui smartphone Anda.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="scroll-card bg-neutral-900/50 border border-neutral-800/80 p-8 rounded-2xl hover:border-brand-red/50 transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-neutral-950 flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-graduation-cap text-brand-red text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-white">Barberman Academy</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Kami menyediakan, mendidik, dan mensertifikasi para barberman secara berkala untuk menjaga kualitas layanan serta keramahan maksimal di outlet Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRANCHISE PACKAGES -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(225,29,72,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <span class="text-xs uppercase tracking-widest text-brand-red font-bold block mb-2">// INVESTASI KEMITRAAN</span>
+            <h2 class="font-display text-3xl md:text-5xl font-extrabold text-brand-white mb-6 scroll-trigger-title">
+                Pilihan Paket Franchise Terbaik
+            </h2>
+            <p class="text-neutral-400 text-sm md:text-base max-w-xl mx-auto mb-16">
+                Sesuaikan kapasitas modal Anda dengan format bisnis yang kami sediakan untuk melayani target pasar yang tepat.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <!-- Package 1 -->
+                <div class="scroll-card bg-neutral-950 border border-neutral-800 p-8 rounded-2xl flex flex-col justify-between hover:border-brand-white/20 transition-all duration-300 relative">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-neutral-500 font-bold block mb-3">Starter Pack</span>
+                        <h3 class="font-display text-2xl font-bold mb-2 text-brand-white">Bronze Chair</h3>
+                        <p class="text-neutral-400 text-xs mb-6">Cocok untuk ruko ukuran medium dan pemula.</p>
+                        <hr class="border-neutral-800 mb-6">
+                        <div class="mb-6">
+                            <span class="text-xs text-neutral-400">Nilai Investasi</span>
+                            <div class="font-display text-3xl font-extrabold text-brand-white mt-1">IDR 85 Juta</div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> 2 Barber Chairs</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Standard Branding & Signage</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> 2 Tersertifikasi Barberman</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Sistem Kasir Terintegrasi</li>
+                        </ul>
+                    </div>
+                    <a href="#daftar-section" class="w-full text-center py-3 border border-brand-red hover:bg-brand-red text-brand-white hover:text-white font-bold rounded-xl transition-all block duration-300">Pilih Paket</a>
+                </div>
+
+                <!-- Package 2 (Highlighted) -->
+                <div class="scroll-card bg-brand-red border border-brand-red p-8 rounded-2xl flex flex-col justify-between hover:scale-[1.03] transition-all duration-300 relative shadow-[0_10px_30px_rgba(225,29,72,0.3)]">
+                    <div class="absolute top-4 right-4 bg-brand-white text-brand-black text-[10px] font-extrabold uppercase py-1 px-3 rounded-full">Best Seller</div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-red-100 font-bold block mb-3">Full Option Autopilot</span>
+                        <h3 class="font-display text-2xl font-bold mb-2 text-white">Silver Signature</h3>
+                        <p class="text-red-100 text-xs mb-6">Sangat direkomendasikan untuk area komersil strategis.</p>
+                        <hr class="border-white/20 mb-6">
+                        <div class="mb-6">
+                            <span class="text-xs text-red-100">Nilai Investasi</span>
+                            <div class="font-display text-3xl font-extrabold text-white mt-1">IDR 150 Juta</div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-red-500 mb-8">
+                            <li class="flex items-center gap-2 text-white"><i class="fa-regular fa-circle-check text-white"></i> 4 Barber Chairs Premium</li>
+                            <li class="flex items-center gap-2 text-white"><i class="fa-regular fa-circle-check text-white"></i> Full Interior & Premium Lighting</li>
+                            <li class="flex items-center gap-2 text-white"><i class="fa-regular fa-circle-check text-white"></i> 4 Tersertifikasi Barberman</li>
+                            <li class="flex items-center gap-2 text-white"><i class="fa-regular fa-circle-check text-white"></i> SOP Management & Marketing</li>
+                            <li class="flex items-center gap-2 text-white"><i class="fa-regular fa-circle-check text-white"></i> Launching Event Support</li>
+                        </ul>
+                    </div>
+                    <a href="#daftar-section" class="w-full text-center py-3 bg-white text-brand-black hover:bg-neutral-100 font-bold rounded-xl transition-all block duration-300">Pilih Paket</a>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="scroll-card bg-neutral-950 border border-neutral-800 p-8 rounded-2xl flex flex-col justify-between hover:border-brand-white/20 transition-all duration-300 relative">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-neutral-500 font-bold block mb-3">Enterprise Format</span>
+                        <h3 class="font-display text-2xl font-bold mb-2 text-brand-white">Gold Luxury Hub</h3>
+                        <p class="text-neutral-400 text-xs mb-6">Konsep Barbershop + Coffee Lounge terintegrasi.</p>
+                        <hr class="border-neutral-800 mb-6">
+                        <div class="mb-6">
+                            <span class="text-xs text-neutral-400">Nilai Investasi</span>
+                            <div class="font-display text-3xl font-extrabold text-brand-white mt-1">IDR 275 Juta</div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> 6 Barber Chairs Luxury Edition</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Custom Aesthetic Interior Design</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Mini Coffee Bar Corner</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Priority Marketing & National Ads</li>
+                            <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-red"></i> Recruitment & HR Replacement Guarantees</li>
+                        </ul>
+                    </div>
+                    <a href="#daftar-section" class="w-full text-center py-3 border border-brand-red hover:bg-brand-red text-brand-white hover:text-white font-bold rounded-xl transition-all block duration-300">Pilih Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP / TAHAPAN KEMITRAAN -->
+    <section class="py-24 px-6 bg-brand-darker relative border-t border-neutral-950">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-widest text-brand-red font-bold block mb-2">// ALUR KERJA</span>
+                <h2 class="font-display text-3xl md:text-5xl font-extrabold text-brand-white mb-4 scroll-trigger-title">
+                    Langkah Memulai Bisnis Anda
+                </h2>
+                <p class="text-neutral-400 text-sm md:text-base">
+                    Dari penandatanganan hingga profit pertama Anda, kami mendampingi setiap langkah Anda.
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:-translate-x-1/2 before:w-[2px] before:bg-neutral-800">
+                
+                <!-- Step 1 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 scroll-card">
+                    <div class="md:w-1/2 text-left md:text-right md:pr-12">
+                        <span class="font-display text-lg font-bold text-brand-red block mb-1">Tahap 1</span>
+                        <h4 class="font-display text-xl font-bold text-brand-white mb-2">Konsultasi & Pengajuan</h4>
+                        <p class="text-neutral-400 text-sm">Diskusikan potensi lokasi, kesiapan finansial, dan pengenalan model bisnis kami.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand-black border-4 border-brand-red z-10 flex items-center justify-center">
+                        <span class="text-xs font-bold text-brand-white">1</span>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between gap-6 md:gap-12 scroll-card">
+                    <div class="md:w-1/2 text-left md:pl-12">
+                        <span class="font-display text-lg font-bold text-brand-red block mb-1">Tahap 2</span>
+                        <h4 class="font-display text-xl font-bold text-brand-white mb-2">Survei Lokasi & Desain Layout</h4>
+                        <p class="text-neutral-400 text-sm">Tim kami meninjau kelayakan lokasi ruko/kios pilihan Anda untuk dibuatkan layout 3D.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand-black border-4 border-neutral-700 z-10 flex items-center justify-center">
+                        <span class="text-xs font-bold text-brand-white">2</span>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 scroll-card">
+                    <div class="md:w-1/2 text-left md:text-right md:pr-12">
+                        <span class="font-display text-lg font-bold text-brand-red block mb-1">Tahap 3</span>
+                        <h4 class="font-display text-xl font-bold text-brand-white mb-2">Renovasi & Pengiriman Alat</h4>
+                        <p class="text-neutral-400 text-sm">Pemasangan dekorasi interior, pengiriman seluruh peralatan barber premium.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand-black border-4 border-neutral-700 z-10 flex items-center justify-center">
+                        <span class="text-xs font-bold text-brand-white">3</span>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between gap-6 md:gap-12 scroll-card">
+                    <div class="md:w-1/2 text-left md:pl-12">
+                        <span class="font-display text-lg font-bold text-brand-red block mb-1">Tahap 4</span>
+                        <h4 class="font-display text-xl font-bold text-brand-white mb-2">Grand Opening</h4>
+                        <p class="text-neutral-400 text-sm">Pelatihan intensif staf barberman, strategi promo peluncuran, dan outlet resmi beroperasi.</p>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand-black border-4 border-brand-red z-10 flex items-center justify-center animate-pulse">
+                        <span class="text-xs font-bold text-brand-white">4</span>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM INTERAKTIF INTEGRASI WHATSAPP -->
+    <section id="daftar-section" class="py-24 px-6 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(225,29,72,0.06)_0%,transparent_70%)] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="bg-neutral-900/60 border border-neutral-800 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                
+                <div class="text-center mb-10">
+                    <div class="w-16 h-16 bg-brand-red/10 border border-brand-red/30 flex items-center justify-center rounded-full mx-auto mb-4">
+                        <i class="fa-solid fa-file-contract text-brand-red text-2xl"></i>
+                    </div>
+                    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-brand-white mb-2">Formulir Pendaftaran Franchise</h2>
+                    <p class="text-neutral-400 text-sm max-w-md mx-auto">Lengkapi data Anda di bawah ini. Informasi kemitraan komprehensif akan langsung dikirim oleh Franchise Specialist kami via WhatsApp.</p>
+                </div>
+
+                <!-- Dynamic Forms -->
+                <form id="franchiseForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Name Field -->
+                        <div class="space-y-2 text-left">
+                            <label for="fullName" class="text-xs font-bold uppercase tracking-wider text-neutral-400">Nama Lengkap</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"><i class="fa-regular fa-user"></i></span>
+                                <input type="text" id="fullName" required placeholder="Masukkan nama lengkap Anda" class="w-full pl-10 pr-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all text-sm text-brand-white outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Phone Field -->
+                        <div class="space-y-2 text-left">
+                            <label for="phoneNumber" class="text-xs font-bold uppercase tracking-wider text-neutral-400">Nomor WhatsApp</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"><i class="fa-brands fa-whatsapp"></i></span>
+                                <input type="tel" id="phoneNumber" required placeholder="Contoh: 08123456789" class="w-full pl-10 pr-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all text-sm text-brand-white outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Location Target -->
+                        <div class="space-y-2 text-left">
+                            <label for="locationTarget" class="text-xs font-bold uppercase tracking-wider text-neutral-400">Kota/Area Minat Franchise</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"><i class="fa-solid fa-map-pin"></i></span>
+                                <input type="text" id="locationTarget" required placeholder="Contoh: Bandung, Jakarta Selatan" class="w-full pl-10 pr-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all text-sm text-brand-white outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Investment Capital Plan -->
+                        <div class="space-y-2 text-left">
+                            <label for="capitalRange" class="text-xs font-bold uppercase tracking-wider text-neutral-400">Rencana Paket Investasi</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500"><i class="fa-solid fa-wallet"></i></span>
+                                <select id="capitalRange" required class="w-full pl-10 pr-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all text-sm text-brand-white outline-none appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Pilih Paket Investasi</option>
+                                    <option value="Bronze Chair (85 Juta)">Bronze Chair (IDR 85 Juta)</option>
+                                    <option value="Silver Signature (150 Juta)">Silver Signature (IDR 150 Juta)</option>
+                                    <option value="Gold Luxury Hub (275 Juta)">Gold Luxury Hub (IDR 275 Juta)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note Area -->
+                    <div class="space-y-2 text-left">
+                        <label for="userNotes" class="text-xs font-bold uppercase tracking-wider text-neutral-400">Catatan Tambahan (Opsional)</label>
+                        <textarea id="userNotes" rows="3" placeholder="Tuliskan jika ada lokasi khusus atau pertanyaan awal..." class="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all text-sm text-brand-white outline-none resize-none"></textarea>
+                    </div>
+
+                    <!-- CTA Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" class="w-full py-4 bg-brand-red hover:bg-brand-redHover text-white font-extrabold rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 shadow-[0_5px_25px_rgba(225,29,72,0.4)]">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>KIRIM DATA KE WHATSAPP SPECIALIST</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Status Feedback (Implicit alert style custom message) -->
+                <div id="statusMessage" class="hidden mt-4 p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/50 text-emerald-400 text-sm text-center">
+                    <i class="fa-regular fa-circle-check mr-2"></i> Formulir berhasil diproses! Mengalihkan ke WhatsApp Anda...
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & FAQ BANNER -->
+    <footer class="bg-brand-darker py-16 px-6 border-t border-neutral-900 text-left">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-2 space-y-4">
+                    <span class="font-display font-black text-2xl tracking-wider text-brand-white">BARBERMAN<span class="text-brand-red">.ID</span></span>
+                    <p class="text-neutral-500 text-sm leading-relaxed max-w-sm">
+                        Jaringan pangkas rambut pria profesional dengan kualitas tanpa kompromi, manajemen modern, dan konsep kemitraan ramah investasi.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-brand-red transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-brand-red transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-brand-red transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Fast Links -->
+                <div>
+                    <h4 class="font-display text-sm font-bold uppercase tracking-wider text-brand-white mb-4">Informasi</h4>
+                    <ul class="space-y-2 text-sm text-neutral-500">
+                        <li><a href="#prospektus-section" class="hover:text-brand-red transition-colors">Keunggulan Kemitraan</a></li>
+                        <li><a href="#daftar-section" class="hover:text-brand-red transition-colors">Persyaratan</a></li>
+                        <li><a href="#prospektus-section" class="hover:text-brand-red transition-colors">Estimasi BEP</a></li>
+                        <li><a href="#daftar-section" class="hover:text-brand-red transition-colors">Unduh File Proposal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support & Contact -->
+                <div>
+                    <h4 class="font-display text-sm font-bold uppercase tracking-wider text-brand-white mb-4">Layanan Mitra</h4>
+                    <p class="text-neutral-500 text-sm mb-2">Punya pertanyaan seputar investasi?</p>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Team%20Franchise%20Barberman" class="text-sm font-bold text-brand-red hover:underline flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>+62 812-3456-7890</span>
+                    </a>
+                    <p class="text-neutral-600 text-xs mt-2">Jam Kerja: Sen - Jum | 09.00 - 17.00 WIB</p>
+                </div>
+            </div>
+
+            <hr class="border-neutral-900 my-8">
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600">
+                <p>&copy; 2026 Barberman.id. Seluruh hak cipta dilindungi undang-undang.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-brand-white">Ketentuan Layanan</a>
+                    <a href="#" class="hover:text-brand-white">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // Trigger Animations on page load
+        window.onload = function() {
+            // Anime.js timeline for Hero animation on load
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 1200
+            });
+
+            tl
+            // 1. Hero SVG
+            .add({
+                targets: '#hero-logo-svg',
+                opacity: [0, 1],
+                translateY: [40, 0],
+                delay: 200
+            })
+            // SVG Path styling and draw using explicit numeric array bounds instead of anime.setDashoffset
+            .add({
+                targets: '#hero-logo-svg .draw-line-1, #hero-logo-svg .draw-line-2',
+                strokeDashoffset: [100, 0],
+                easing: 'easeInOutSine',
+                duration: 600
+            }, '-=800')
+            // 2. Title word stagger effect
+            .add({
+                targets: '.text-reveal',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1000,
+                delay: anime.stagger(100)
+            }, '-=1000')
+            // 3. Subtitle description
+            .add({
+                targets: '.text-fade-in',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=600')
+            // 4. CTA Buttons
+            .add({
+                targets: '.buttons-fade-in',
+                opacity: [0, 1],
+                scale: [0.95, 1],
+                duration: 800
+            }, '-=500')
+            // 5. Stat Bar Items stagger
+            .add({
+                targets: '.stats-fade-in',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=400');
+
+            // Dynamic Island Intro effect on load
+            anime({
+                targets: '#dynamic-island',
+                opacity: [0, 1],
+                translateY: [-30, 0],
+                scale: [0.9, 1],
+                duration: 1500,
+                delay: 600,
+                easing: 'easeOutElastic(1, .8)'
+            });
+        };
+
+        // Intersection Observer for scroll triggered elements
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Trigger custom animation using Anime.js
+                    if (entry.target.classList.contains('scroll-trigger-title')) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateX: [-40, 0],
+                            duration: 1000,
+                            easing: 'easeOutQuad'
+                        });
+                    } else if (entry.target.classList.contains('scroll-card')) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [40, 0],
+                            duration: 1200,
+                            easing: 'easeOutCubic'
+                        });
+                    }
+                    // Stop observing once animated
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15 // trigger when 15% is visible
+        });
+
+        // Register elements to observer
+        document.querySelectorAll('.scroll-trigger-title, .scroll-card').forEach((el) => {
+            el.style.opacity = '0'; // Hide initially
+            scrollObserver.observe(el);
+        });
+
+        // Dynamic Island expanding simulation on hover
+        const dynamicIsland = document.getElementById('dynamic-island');
+        
+        dynamicIsland.addEventListener('mouseenter', () => {
+            anime({
+                targets: dynamicIsland,
+                scale: 1.03,
+                boxShadow: '0 0 35px rgba(225,29,72,0.3)',
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+
+        dynamicIsland.addEventListener('mouseleave', () => {
+            anime({
+                targets: dynamicIsland,
+                scale: 1.0,
+                boxShadow: '0 0 30px rgba(225,29,72,0.15)',
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+
+        // Handle franchise registration submit & generate custom WA message link
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            // Get Form Inputs
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phoneNumber').value.trim();
+            const location = document.getElementById('locationTarget').value.trim();
+            const capital = document.getElementById('capitalRange').value;
+            const notes = document.getElementById('userNotes').value.trim() || 'Tidak ada catatan tambahan.';
+
+            // Validate fields
+            if (!name || !phone || !location || !capital) {
+                return;
+            }
+
+            // Generate WhatsApp text with proper formatting and encode for URL
+            const textHeader = "🔴 *FORM REGISTRASI KEMITRAAN BARBERMAN.ID* 🔴\n\n";
+            const textContent = 
+                `• *Nama Lengkap* : ${name}\n` +
+                `• *Nomor WA*     : ${phone}\n` +
+                `• *Kota Target*  : ${location}\n` +
+                `• *Paket Minat*  : ${capital}\n` +
+                `• *Catatan Tambahan* : _"${notes}"_\n\n` +
+                `Mohon segera diproses brosur prospektus lengkap & simulasi investasinya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(textHeader + textContent);
+            const adminPhoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp admin yang valid
+            const waUrl = `https://wa.me/${adminPhoneNumber}?text=${encodedMessage}`;
+
+            // Show interactive status update message to user
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.classList.remove('hidden');
+
+            // Button animation feedback
+            anime({
+                targets: '#franchiseForm button[type="submit"]',
+                scale: [1, 0.95, 1],
+                opacity: 0.9,
+                duration: 400,
+                easing: 'easeInOutQuad',
+                complete: () => {
+                    setTimeout(() => {
+                        window.open(waUrl, '_blank');
+                        statusMessage.classList.add('hidden');
+                    }, 1200); // Wait briefly to show transition progress
+                }
+            });
+        }
+    </script>
+</body>
+</html>
